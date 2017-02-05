@@ -1,4 +1,4 @@
-<h1>Create an Article</h1>
+<h1>Edit existing article</h1>
 
 <% if @article.errors.any? %>
 <h3>The following errors where found:</h3>
@@ -9,6 +9,8 @@
   </ul>
 
 <% end %>
+
+
 
 <%= form_for @article do |f| %>
 <p
@@ -28,4 +30,3 @@
 <p>
   <%= link_to "Back to articles", articles_path %>
 </p>
-

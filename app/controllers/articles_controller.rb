@@ -1,7 +1,25 @@
 class ArticlesController < ApplicationController
 
+  def index
+    @articles = Article.all
+  end
+
   def new #Action!!!
     @article = Article.new
+  end
+
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      flash[:notice] = "Article was successfully updated"
+      redirect_to article_path(@article) # it needs the id to render a specific id view
+    else
+      render 'edit' # renders the /new page
+    end
   end
 
   def create
@@ -21,6 +39,6 @@ class ArticlesController < ApplicationController
   private
 
   def article_params #learn what "whitelist params is"
-    params.require(:article).permit(:title, :descrption)
+    params.require(:article).permit(:title, :description)
   end
 end
