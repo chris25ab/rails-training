@@ -5,12 +5,8 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    #render plain: params[:article].inspect
     @article = Article.new(article_params)
-    # @article.save
-    # redirect_to article_path(@article)
     if @article.save #id save is success
-      #do some
       flash[:notice] = "Article was successfully created"
       redirect_to article_path(@article) # it needs the id to render a specific id view
     else
@@ -24,7 +20,7 @@ class ArticlesController < ApplicationController
 
   private
 
-  def article_params
+  def article_params #learn what "whitelist params is"
     params.require(:article).permit(:title, :descrption)
   end
 end
