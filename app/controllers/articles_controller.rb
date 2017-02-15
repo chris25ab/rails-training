@@ -15,7 +15,7 @@ before_action :set_article, only: [:edit, :update, :show, :destroy]
 
   def update
     if @article.update(article_params)
-      flash[:notice] = "Article was successfully updated"
+      flash[:success] = "Article was successfully updated"
       redirect_to article_path(@article) # it needs the id to render a specific id view
     else
       render 'edit' # renders the /new page
@@ -24,14 +24,14 @@ before_action :set_article, only: [:edit, :update, :show, :destroy]
 
   def destroy
     @article.destroy
-    flash[:notice] = "Article was successfully deleted"
+    flash[:danger] = "Article was successfully deleted"
     redirect_to articles_path
   end
 
   def create
     @article = Article.new(article_params)
     if @article.save #id save is success
-      flash[:notice] = "Article was successfully created"
+      flash[:success] = "Article was successfully created"
       redirect_to article_path(@article) # it needs the id to render a specific id view
     else
       render 'new' # renders the /new page
